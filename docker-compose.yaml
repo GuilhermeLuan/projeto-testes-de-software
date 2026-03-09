@@ -1,0 +1,22 @@
+services:
+  database:
+    image: "postgres:16.0-alpine3.18"
+    environment:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: local_user
+      POSTGRES_DB: local_db
+      POSTGRES_PASSWORD: local_password
+    ports:
+      - "5432:5432"
+
+  cache:
+    image: redis:7.4-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass yourpassword
+    volumes:
+      - cache:/data
+volumes:
+  cache:
+    driver: local
