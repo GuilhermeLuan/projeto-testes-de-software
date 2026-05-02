@@ -23,7 +23,7 @@ jobs:
           distribution: 'corretto'
           cache: maven
       - name: Run Unit Tests
-        run: ./mvnw -B test
+        run: mvn -B test
 
   backend-verify:
     name: Backend Integration Tests
@@ -40,7 +40,7 @@ jobs:
           distribution: 'corretto'
           cache: maven
       - name: Run Integration Tests
-        run: ./mvnw -B verify -DskipUnitTests
+        run: mvn -B verify -DskipUnitTests
 
   frontend-build:
     name: Frontend Build
